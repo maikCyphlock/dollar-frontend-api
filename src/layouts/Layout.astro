@@ -1,0 +1,42 @@
+---
+export interface Props {
+	title: string;
+}
+import "@fontsource/space-grotesk";
+const { title } = Astro.props;
+import "../styles/reset.css";
+import "../styles/index.css";
+import Navbar from "../components/Navbar.astro";
+---
+
+<html style="prefers-color-scheme: dark" lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<div class="root">
+			<Navbar />
+			<slot />
+		</div>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--accent: 124, 58, 237;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			#da62c4 30%,
+			white 60%
+		);
+	}
+	html {
+		font-family: "Fira Code", monospace;
+		/* background-color: #f6f6f6; */
+	}
+</style>

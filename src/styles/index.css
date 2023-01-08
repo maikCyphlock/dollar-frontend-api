@@ -1,0 +1,122 @@
+:root {
+    --gray: rgba(219, 219, 219, 0.5);
+    --white-blue: rgb(239, 247, 255);
+    --blue: rgb(120, 178, 224);
+    --green: rgb(55, 146, 74);
+    --red: rgb(219, 95, 95);
+}
+
+.root{
+    max-width: 1300px;
+    margin: 0 auto;
+
+}
+
+html.dark body {
+    background-color: rgb(0, 0, 20);
+}
+html,
+body {
+    margin: 0;
+    font-size: clamp(12px, 2vw, 18px);
+}
+
+header {
+    display: block;
+    position: relative;
+}
+
+
+
+.green {
+    color: var(--green);
+}
+.red {
+    color: var(--red);
+}
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray);
+    & h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 0;
+    }
+}
+.navbar-links {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    & > a {
+        text-decoration: none;
+        color: inherit;
+        
+    }
+
+    & > a:hover {
+        color: var(--blue);
+    }
+}
+
+.grid-card {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    
+    gap: 1rem;
+}
+.dolar-card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3rem;
+    border: 1px solid var(--gray);
+    border-radius: 12px;
+    padding: 1rem;
+}
+.theme-changer-btn {
+    display:flex; justify-content:center; align-items:center; padding: 6px; border: 1px solid grey; border-radius: 12px;
+    background: transparent
+     
+}
+html.dark {
+    & .app > * {
+        color: var(--white-blue);
+    }
+    
+    & .navbar {
+        color: var(--white-blue);
+    }
+    & .dolar-card {
+        background-color: rgb(48, 48, 48);
+    }
+    & .theme-changer-btn {
+        fill: var(--white-blue);
+    }
+}
+@media screen and (max-width:750px){
+    .grid-card {
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        
+        gap: 1rem;
+    }
+}
+
+@media screen and (max-width:500px){
+    .grid-card {
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        
+        gap: 1rem;
+    }
+}
