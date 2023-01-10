@@ -1,31 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
-
-const response = await fetch("https://dolar-api.maikolaguilar656.workers.dev/");
-const data = await response.json();
+import Layout from "@layouts/Layout.astro";
+import PriceCards from "@components/PriceCards.astro";
 ---
 
 <Layout title="Welcome to Astro.">
 	<div class="app">
-		<main class="grid-card">
-			{
-				data.map((dolar) => (
-					<div class="dolar-card">
-						<h1>{dolar.origin}</h1>
-						<div>
-							<h2>{dolar.price} Bs</h2>
-							<h3
-								class={`
-									${dolar.stock.includes("▲") ? "green" : ""}
-									${dolar.stock.includes("▼") ? "red" : ""}
-								`}
-							>
-								Bs {dolar.stock}
-							</h3>
-						</div>
-					</div>
-				))
-			}
-		</main>
+		<PriceCards />
 	</div>
 </Layout>
