@@ -1,6 +1,6 @@
 ---
 export interface Props {
-	title: string;
+  title: string;
 }
 import "@fontsource/space-grotesk";
 const { title } = Astro.props;
@@ -8,35 +8,71 @@ import "../styles/index.css";
 import Navbar from "../components/Navbar.astro";
 ---
 
-	
 <html style="prefers-color-scheme: dark" lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<div class="root">
-			<Navbar />
-			<slot />
-		</div>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta
+      name="description"
+      content="Obtén información actualizada sobre el precio del dólar en Venezuela. Consulta nuestro sitio web y mantente al tanto de los cambios en la tasa de cambio del dólar en el país."
+    />
+    <meta
+      name="keywords"
+      content="dólar, Venezuela, tasa de cambio, precio, información, sitio web, dollar, exchange"
+    />
+    <meta name="author" content="maikol aguilar" />
+    <meta name="robots" content="index, follow" />
+    <meta
+      property="og:title"
+      content="Consultar precio del dólar en Venezuela | dolar ve"
+    />
+    <meta
+      property="og:description"
+      content="Obtén información actualizada sobre el precio del dólar en Venezuela. Consulta nuestro sitio web y mantente al tanto de los cambios en la tasa de cambio del dólar en el país."
+    />
+    <meta property="og:image" content="https://imgur.com/YPnSN2h.png" />
+    <meta property="og:url" content="https://dolar-ve.vercel.app" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_VE" />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Consultar precio del dólar en Venezuela | dolar ve"
+    />
+    <meta
+      name="twitter:description"
+      content="Obtén información actualizada sobre el precio del dólar en Venezuela. Consulta nuestro sitio web y mantente al tanto de los cambios en la tasa de cambio del dólar en el país."
+    />
+    <meta name="twitter:image" content="https://imgur.com/YPnSN2h.png" />
+    <meta name="twitter:url" content="https://dolar-ve.vercel.app" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="root">
+      <Navbar />
+      <slot />
+    </div>
+  </body>
 </html>
 
 <style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			#da62c4 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: "Space grotesk", monospace;
-		/* background-color: #f6f6f6; */
-	}
+  :root {
+    --accent: 124, 58, 237;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      #da62c4 30%,
+      white 60%
+    );
+  }
+  html {
+    font-family: "Space grotesk", monospace;
+    /* background-color: #f6f6f6; */
+  }
 </style>
