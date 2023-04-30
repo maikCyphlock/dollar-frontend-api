@@ -4,35 +4,35 @@ const data = await response.json();
 ---
 
 <main class="grid-card">
-    {
-        data.map(
-            (dolar: {
-                imgUrl: string;
-                origin: string;
-                price: string;
-                stock: string;
-            }) => (
-                <div class="dolar-card">
-                    <img
-                        src={`./${dolar.imgUrl}.webp`}
-                        alt={dolar.imgUrl}
-                        class="dolar-logo"
-                    />
-                    <h1 class="dolar-origin">{dolar.origin}</h1>
-                    <div class="dolar-pricing">
-                        <h2 class="dolar-price">{dolar.price} Bs</h2>
-                        <span class="dolar-variation">variación:</span>
-                        <h3
-                            class={`
-                            ${dolar.stock.includes("▲") ? "green" : ""}
-                            ${dolar.stock.includes("▼") ? "red" : ""}
-                        `}
-                        >
-                            Bs {dolar.stock}
-                        </h3>
-                    </div>
-                </div>
-            )
-        )
-    }
+  {
+    data.map(
+      (dolar: {
+        imgUrl: string;
+        origin: string;
+        price: string;
+        stock: string;
+      }) => (
+        <div class="dolar-card">
+          <img
+            src={`./${dolar.imgUrl}.webp`}
+            alt={dolar.imgUrl}
+            class="dolar-logo"
+          />
+          <h2 class="dolar-origin">{dolar.origin}</h2>
+          <div class="dolar-pricing">
+            <h3 class="dolar-price">{dolar.price} Bs</h3>
+            <span class="dolar-variation">variación:</span>
+            <h4
+              class={`${dolar.stock.includes("▲") ? "green" : ""}${
+                dolar.stock.includes("▼") ? "red" : ""
+              }
+            `}
+            >
+              Bs {dolar.stock}
+            </h4>
+          </div>
+        </div>
+      )
+    )
+  }
 </main>
