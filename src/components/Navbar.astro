@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from "../components/ThemeChanger";
+import DolarVe from "../components/icons/DolarVe.astro";
 ---
 
 <script>
@@ -23,7 +24,15 @@ import ThemeToggle from "../components/ThemeChanger";
 
 <header>
   <nav class="navbar">
-    <h1>Dolar Ve</h1>
+    <div
+      style="display: flex; justify-content: center; align-items:center; gap: 0.5rem"
+    >
+      <div style="height: 32px; width: 32px">
+        <DolarVe />
+      </div>
+      <h2>DolarVe</h2>
+    </div>
+
     <ul class="navbar-links">
       <a href="/">Home</a>
       <a href="about">About</a>

@@ -1,9 +1,34 @@
 @import './reset.css';
 
 :root {
-    --gray: rgba(219, 219, 219, 0.5);
-    --white-blue: rgb(239, 247, 255);
-    --blue: rgb(120, 178, 224);
+    --grey-50: #f5f6f5;
+    --grey-100: #e6e7e6;
+    --grey-200: #d0d1d0;
+    --grey-300: #afb1af;
+    --grey-400: #878987;
+    --grey-500: #6c6e6c;
+    --grey-600: #5c5e5c;
+    --grey-700: #4e504f;
+    --grey-800: #424342;
+    --grey-900: #3c3d3c;
+    --grey-950: #262626;
+
+
+    --blue-50: #ebfbff;
+    --blue-100: #cdf3ff;
+    --blue-200: #a1e5ff;
+    --blue-300: #60d1ff;
+    --blue-400: #18b2f8;
+    --blue-500: #0095de;
+    --blue-600: #0075ba;
+    --blue-700: #085f96;
+    --blue-800: #104d7a;
+    --blue-900: #124167;
+    --blue-950: #01080e;
+
+
+
+
     --green: rgb(55, 146, 74);
     --red: rgb(219, 95, 95);
     --black: rgb(0, 0, 20);
@@ -13,16 +38,17 @@
     --black-trans-25: rgba(0, 0, 20, 0.25);
 }
 
-.root{
+.root {
     max-width: 1400px;
     margin: 0 auto;
 
 }
 
 html.dark body {
-    background-color: var(--black);
-    color: var(--white-blue);
+    background-color: var(--blue-950);
+    color: var(--blue-200);
 }
+
 html,
 body {
     margin: 0;
@@ -38,127 +64,153 @@ header {
 .green {
     color: var(--green);
 }
+
 .red {
     color: var(--red);
 }
+
 .navbar {
     display: flex;
     justify-content: space-around;
     padding: 1rem 0;
     align-items: center;
-    
-   
-    border-bottom: 1px solid var(--gray);
+
+
+    border-bottom: 1px solid var(--grey-200);
+
     & h1 {
         font-size: 3rem;
         font-weight: 700;
         margin: 0;
     }
 }
+
 .navbar-links {
     list-style-type: none;
     display: flex;
     align-items: center;
     gap: 2rem;
 
-    & > a {
+    &>a {
         text-decoration: none;
         color: inherit;
-        
+
     }
 
-    & > a:hover {
-        color: var(--blue);
+    &>a:hover {
+        color: var(--blue-600);
     }
 }
 
 .grid-card {
     padding: 1rem;
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    
+    grid-template-columns: repeat(3, 1fr);
+
     gap: 1rem;
 }
+
 .dolar-card {
- 
+
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
     gap: 40px;
-    border: 1px solid var(--gray);
+    border: 1px solid var(--grey-200);
     border-radius: 12px;
-    padding:  1rem;
+    padding: 1rem;
     transition: all 150ms ease;
-    
+    background-color: var(--grey-50);
+
     &:hover {
-        border-color: var(--blue);
+        border-color: var(--blue-400);
         transform: scale(1.01);
+
     }
 }
-.dolar-logo{
+
+.dolar-logo {
     image-rendering: pixelated;
     object-fit: cover;
     aspect-ratio: 1/1;
     width: 64px;
     height: 64px;
 }
-.dolar-origin{
+
+.dolar-origin {
     font-weight: 300;
 }
-.dolar-price{
+
+.dolar-price {
     font-size: 2rem;
 }
-.dolar-variation{
+
+.dolar-variation {
     font-weight: 200;
     font-size: .9rem;
 }
-.dolar-pricing{
+
+.dolar-pricing {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
+
 .theme-changer-btn {
-    display:flex; justify-content:center; align-items:center; padding: 6px; border: 1px solid grey; border-radius: 12px;
-    background: transparent
-     
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    border: 1px solid var(--grey-200);
+    border-radius: 12px;
+    background: transparent;
+    cursor: pointer;
 }
+
 html.dark {
-    & .app > * {
-        color: var(--white-blue);
+    & .app>* {
+        color: var(--blue-100);
     }
-    
+
     & .navbar {
-        color: var(--white-blue);
+        color: var(--blue-100);
     }
+
     & .dolar-card {
-        background-color: rgb(48, 48, 48);
+        background-color: var(--grey-950);
+
+        &:hover {
+            background-color: var(--grey-800);
+        }
     }
+
     & .theme-changer-btn {
-        fill: var(--white-blue);
+        fill: var(--blue-100);
     }
 }
-@media screen and (max-width:1024px){
+
+@media screen and (max-width:1024px) {
     .grid-card {
         padding: 1rem;
         display: grid;
-        grid-template-columns: repeat(2,1fr);
-        
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 }
 
-@media screen and (max-width:500px){
+@media screen and (max-width:500px) {
     .grid-card {
         padding: 1rem;
         display: grid;
-        grid-template-columns: repeat(1,1fr);
-        
+        grid-template-columns: repeat(1, 1fr);
+
         gap: 1rem;
     }
-    .navbar{
+
+    .navbar {
         flex-direction: column;
     }
 }
