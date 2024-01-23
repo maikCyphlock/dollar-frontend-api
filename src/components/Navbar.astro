@@ -23,21 +23,20 @@ import DolarVe from "../components/icons/DolarVe.astro";
 </script>
 
 <header>
-  <nav class="navbar">
-    <div
-      style="display: flex; justify-content: center; align-items:center; gap: 0.5rem"
-    >
-      <div style="height: 32px; width: 32px">
+  <nav class="px-20 py-5 flex items-center justify-between">
+    <div class="flex items-center">
+      <div class="w-6 h-6">
         <DolarVe />
       </div>
       <h2>DolarVe</h2>
     </div>
 
-    <ul class="navbar-links">
-      <a href="/">Home</a>
-      <a href="about">About</a>
+    <ul class="flex gap-3">
+      <a href="/">Inicio</a>
+      <a href="about">saber más</a>
 
       <ThemeToggle client:only="react" />
     </ul>
+    <div></div>
   </nav>
 </header>

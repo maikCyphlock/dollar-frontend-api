@@ -8,7 +8,7 @@ import "../styles/index.css";
 import Navbar from "../components/Navbar.astro";
 ---
 
-<html style="prefers-color-scheme: dark" lang="es">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -17,8 +17,10 @@ import Navbar from "../components/Navbar.astro";
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9018951160643855"
-     crossorigin="anonymous"></script>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9018951160643855"
+      crossorigin="anonymous"></script>
     <meta
       name="description"
       content="Obtén información actualizada sobre el precio del dólar en Venezuela."
@@ -88,7 +90,7 @@ import Navbar from "../components/Navbar.astro";
     <title>{title}</title>
   </head>
   <body>
-    <div class="root">
+    <div class="dark:bg-gray-950 dark:text-zinc-50">
       <Navbar />
       <slot />
     </div>
