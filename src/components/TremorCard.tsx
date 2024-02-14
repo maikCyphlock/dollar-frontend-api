@@ -46,7 +46,8 @@ export default function Example({
             monitor_id: item.monitor_id,
           }));
           setBankdata(newData);
-        });
+        })
+        .catch((error) => console.error(error));
     }
     fetchData();
   }, [bank, urlname]);
