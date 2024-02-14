@@ -1,45 +1,88 @@
-import { AreaChart, Card, Flex, Metric, Title } from "@tremor/react";
-
-const valueFormatter = function (number) {
-  return "$ " + new Intl.NumberFormat("us").format(number).toString();
+import {
+  AreaChart,
+  Badge,
+  BadgeDelta,
+  Card,
+  Flex,
+  Metric,
+  Title,
+} from "@tremor/react";
+import { useEffect, useState } from "react";
+export interface GetHistory {
+  id: number;
+  monitor_id: string;
+  price: number;
+  timestamp: Date;
+}
+const valueFormatter = function (number: number) {
+  return new Intl.NumberFormat("es-ES", {
+    style: "currency",
+    currency: "USD",
+  }).format(number);
 };
 
-export default function Example({ history, bank, urlname }) {
-  const data = history.history;
-
-  const curatedData = data.map((item) => {
-    return { data: item.exchange_rate.flat(), date: item.date };
-  });
-
-  let bankdata = curatedData.map((i) => {
-    return {
-      date: Intl.DateTimeFormat("es", {
-        month: "short",
-        day: "numeric",
-      }).format(new Date(i.date)),
-      ...i.data.filter((e) => e.bank === bank)[0],
-    };
-  });
+export default function Example({
+  bank,
+  urlname,
+}: {
+  bank: any;
+  urlname: string;
+}) {
+  const [bankdata, setBankdata] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      await fetch(
+        `https://dolarve-backend.onrender.com/get-history-id/${urlname}`
+      )
+        .then((response) => response.json())
+        .then((data: GetHistory[]) => {
+          const newData = data.map((item) => ({
+            fecha: new Intl.DateTimeFormat("es", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            }).format(new Date(item.timestamp)),
+            precio: item.price,
+            monitor_id: item.monitor_id,
+          }));
+          setBankdata(newData);
+        });
+    }
+    fetchData();
+  }, [bank, urlname]);
 
   return (
     <Card>
-      <Title className=" flex gap-1">
-        <img src={`${urlname}.webp`} className="h-6 w-6" alt="" srcset="" />
-        {bankdata?.[0].bank}{" "}
+      <Title className=" flex gap-1 justify-between mb-4">
+        <img src={`${urlname}.webp`} className="h-6 w-6" alt="" />
+        {bank.title}
+        <Badge size="xs">hoy</Badge>
       </Title>
       <Flex
         className="space-x-3 truncate"
         justifyContent="start"
         alignItems="baseline"
       >
-        <Metric>{valueFormatter(bankdata?.[0].selling)}</Metric>
+        <Metric>
+          {valueFormatter(bank?.price)}{" "}
+          {
+            <BadgeDelta
+              isIncreasePositive={true}
+              deltaType={
+                calcIfpriceUpOrDown(bank?.price, bankdata).priceUpOrDown
+              }
+            >
+              {calcIfpriceUpOrDown(bank?.price, bankdata).messageSpanish}
+            </BadgeDelta>
+          }
+        </Metric>
       </Flex>
       <AreaChart
         className="h-72 mt-4"
         data={bankdata}
-        index="date"
-        categories={["buying", "selling"]}
-        colors={["indigo", "cyan"]}
+        index="fecha"
+        categories={["precio"]}
+        colors={["cyan"]}
         showXAxis={true}
         showGridLines={false}
         startEndOnly={true}
@@ -50,25 +93,19 @@ export default function Example({ history, bank, urlname }) {
     </Card>
   );
 }
-
-// .map((item) => ({
-//   bank: item.exchange_rate[0].bank,
-
-//   compra: item.exchange_rate[0].buying,
-
-//   venta: item.exchange_rate[0].selling,
-
-//   date: Intl.DateTimeFormat("es", {
-//     year: "numeric",
-//     month: "short",
-//     day: "numeric",
-//   }).format(new Date(item.date)),
-// })),
-
-function formateDateTime(date) {
-  return Intl.DateTimeFormat("es", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  }).format(new Date(date));
+function calcIfpriceUpOrDown(price, priceArray: []) {
+  let priceUpOrDown = "unchanged";
+  let messageSpanish = "sin cambios";
+  priceArray.some((item) => {
+    if (item.precio > price) {
+      priceUpOrDown = "decrease";
+      messageSpanish = "disminuyó";
+      return true;
+    } else if (item.precio < price) {
+      priceUpOrDown = "increase";
+      messageSpanish = "aumentó";
+      return true;
+    }
+  });
+  return { priceUpOrDown, messageSpanish };
 }
