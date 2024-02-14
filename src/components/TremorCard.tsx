@@ -72,7 +72,7 @@ export default function Example({
                 calcIfpriceUpOrDown(bank?.price, bankdata).priceUpOrDown
               }
             >
-              {calcIfpriceUpOrDown(bank?.price, bankdata).messageSpanish}
+              {calcPercentageChange(bank?.price, bankdata)}
             </BadgeDelta>
           }
         </Metric>
@@ -108,4 +108,15 @@ function calcIfpriceUpOrDown(price, priceArray: []) {
     }
   });
   return { priceUpOrDown, messageSpanish };
+}
+
+function calcPercentageChange(price, priceArray: []) {
+  var ultimoPrecio = priceArray?.at(-2)?.precio;
+
+  // Calcula el cambio porcentual
+  var cambioPorcentual = ((price - ultimoPrecio) / ultimoPrecio) * 100;
+
+  // Redondea al número entero más cercano para evitar decimales innecesarios
+
+  return cambioPorcentual.toFixed(2) + "%";
 }
