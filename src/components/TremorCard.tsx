@@ -55,7 +55,12 @@ export default function Example({
   return (
     <Card>
       <Title className=" flex gap-1 justify-between mb-4">
-        <img src={`${urlname}.webp`} className="h-6 w-6" alt="" />
+        <img
+          loading="lazy"
+          src={`${urlname}.webp`}
+          className="h-6 w-6"
+          alt=""
+        />
         {bank.title}
         <Badge size="xs">hoy</Badge>
       </Title>

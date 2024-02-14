@@ -24,7 +24,7 @@ const data: GetAllcurrencies[] = await response.json();
 ---
 
 <div>
-  <div class="grid gap-4 place-content-center mb-16 relative mx-auto">
+  <div class="grid gap-4 justify-items-center p-2 mb-16">
     <Search list={data ?? []} client:only />
   </div>
   <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-2">
