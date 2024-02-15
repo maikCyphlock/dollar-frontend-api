@@ -19,6 +19,8 @@
     "@tremor/react": "3.14.0",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
+    "@upstash/redis": "^1.28.3",
+    "@vercel/edge": "^1.1.1",
     "astro": "4.3.7",
     "autoprefixer": "^10.4.17",
     "preact": "^10.19.4",
@@ -30,7 +32,8 @@
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.2.0",
     "@tailwindcss/forms": "^0.5.7",
-    "standard": "^17.1.0"
+    "standard": "^17.1.0",
+    "vercel": "^32.3.0"
   },
   "eslintConfig": {
     "extends": [
