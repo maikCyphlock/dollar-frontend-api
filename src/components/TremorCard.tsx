@@ -14,7 +14,7 @@ export interface GetHistory {
   price: number;
   timestamp: Date;
 }
-const valueFormatter = function (number: number) {
+const valueFormatter = function(number: number) {
   return new Intl.NumberFormat("es-ES", {
     style: "currency",
     currency: "USD",
@@ -75,22 +75,22 @@ export default function Example({
             <BadgeDelta
               isIncreasePositive={true}
               deltaType={
-                calcIfpriceUpOrDown(bank?.price, bankdata).priceUpOrDown
+                GetPercentage(bank?.price, bankdata).priceUpOrDown
               }
             >
-              {calcPercentageChange(bank?.price, bankdata)}
+              {GetPercentage(bank?.price, bankdata).fixedPercentage}
             </BadgeDelta>
           }
         </Metric>
       </Flex>
-      <AreaChart
-        className="h-72 mt-4"
+      <areachart
+        classname="h-72 mt-4"
         data={bankdata}
         index="fecha"
         categories={["precio"]}
         colors={["cyan"]}
-        showXAxis={true}
-        showGridLines={false}
+        showxaxis={true}
+        showgridlines={false}
         startEndOnly={true}
         showYAxis={false}
         showLegend={false}
@@ -99,30 +99,26 @@ export default function Example({
     </Card>
   );
 }
-function calcIfpriceUpOrDown(price, priceArray: []) {
+function GetPercentage(price, priceArray: []) {
   let priceUpOrDown = "unchanged";
   let messageSpanish = "sin cambios";
-  priceArray.some((item) => {
-    if (item.precio > price) {
-      priceUpOrDown = "decrease";
-      messageSpanish = "disminuyó";
-      return true;
-    } else if (item.precio < price) {
-      priceUpOrDown = "increase";
-      messageSpanish = "aumentó";
-      return true;
-    }
-  });
-  return { priceUpOrDown, messageSpanish };
-}
-
-function calcPercentageChange(price, priceArray: []) {
   var ultimoPrecio = priceArray?.at(-2)?.precio;
 
   // Calcula el cambio porcentual
-  var cambioPorcentual = ((price - ultimoPrecio) / ultimoPrecio) * 100;
-
+  var cambioPorcentual = (((price - ultimoPrecio) / ultimoPrecio) * 100)
   // Redondea al número entero más cercano para evitar decimales innecesarios
+  if (cambioPorcentual < 0) {
+    priceUpOrDown = "decrease";
+    messageSpanish = "disminuyó";
+  } else if (cambioPorcentual > 0) {
+    priceUpOrDown = "increase";
+    messageSpanish = "aumentó";
+  }
+  let fixedPercentage = cambioPorcentual.toFixed(2);
 
-  return cambioPorcentual.toFixed(2) + "%";
+  return {
+    priceUpOrDown,
+    messageSpanish,
+    fixedPercentage
+  } 
 }
