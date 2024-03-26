@@ -83,7 +83,7 @@ export default function Example({
           }
         </Metric>
       </Flex>
-      <areachart
+      <AreaChart
         classname="h-72 mt-4"
         data={bankdata}
         index="fecha"
