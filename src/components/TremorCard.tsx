@@ -32,7 +32,7 @@ export default function Example({
   useEffect(() => {
     async function fetchData() {
       await fetch(
-        `https://dolarve-backend.onrender.com/api/v2/monitors/get-history-id/${urlname}`
+        `https://dolarve-backend.onrender.com/api/v1/monitors/get-history-id/${urlname}`
       )
         .then((response) => response.json())
         .then((data: GetHistory[]) => {
