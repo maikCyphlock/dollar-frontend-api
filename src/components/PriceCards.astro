@@ -17,7 +17,7 @@ export enum Type {
 import TremorCard from "./TremorCard.tsx";
 import Search from "./Search.tsx";
 const response = await fetch(
-  "https://dolarve-backend.onrender.com/get-all-currency"
+  "https://dolarve-backend.onrender.com/api/v2/monitors/get-all-currency"
 );
 
 const data: GetAllcurrencies[] = await response.json();
